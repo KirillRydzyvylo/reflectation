@@ -1,12 +1,14 @@
 package org.example;
 
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
+        Map<TestResult, ArrayList<Test>> result;
         try {
-            TestRunner.runTest(Tests.class);
+            result = TestRunner.runTest(Tests.class);
         }
         catch (Exception e){
             System.out.println(e.getMessage());

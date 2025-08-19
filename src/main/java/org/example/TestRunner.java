@@ -62,6 +62,7 @@ public class TestRunner {
                 result.get(TestResult.Success).add(testResult);
             } catch (IllegalAccessException e) {
                 testResult.setResult(TestResult.Error);
+                testResult.setResult(TestResult.Error);
                 result.get(TestResult.Error).add(testResult);
             } catch (InvocationTargetException e) {
                 Throwable targetException = e.getCause();
@@ -71,6 +72,7 @@ public class TestRunner {
                 }
                 else {
                     testResult.setResult(TestResult.Error);
+                    testResult.setException(e.getClass());
                     result.get(TestResult.Error).add(testResult);
                 }
             }
@@ -79,7 +81,7 @@ public class TestRunner {
         }
 
         runSubMethods(allMyMethods.stream().filter(MyMethod::isAfterSuite).toList(),constructor);
-        return null;
+        return result;
     }
 
     private static void runSubMethods(List<MyMethod> myMethods, Object instanceObject){
